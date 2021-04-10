@@ -9,7 +9,6 @@ using System.Text;
 namespace BenchmarkConsoleApp
 {
     [SimpleJob(RuntimeMoniker.NetCoreApp50)]
-    [SimpleJob(RuntimeMoniker.NetCoreApp31)]
     [SimpleJob(RuntimeMoniker.Net461)]
     //[RyuJitX64Job, LegacyJitX64Job]
     [MemoryDiagnoser]

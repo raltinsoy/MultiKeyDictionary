@@ -2,16 +2,10 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net5.0;netcoreapp3.1;net461</TargetFrameworks>
+    <TargetFrameworks>net5.0;net461</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net5.0'">
-    <PackageReference Include="BenchmarkDotNet">
-      <Version>0.12.1</Version>
-    </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
     <PackageReference Include="BenchmarkDotNet">
       <Version>0.12.1</Version>
     </PackageReference>
