@@ -2,6 +2,10 @@
 
   <PropertyGroup>
     <TargetFrameworks>net5.0;net461</TargetFrameworks>
+    <Authors>raltinsoy</Authors>
+    <Company>raltinsoy</Company>
+    <RepositoryUrl>https://github.com/raltinsoy/MultiKeyDictionary</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
 </Project>
