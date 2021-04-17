@@ -6,6 +6,7 @@
     <Company>raltinsoy</Company>
     <RepositoryUrl>https://github.com/raltinsoy/MultiKeyDictionary</RepositoryUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
 </Project>
