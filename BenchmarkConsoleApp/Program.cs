@@ -14,6 +14,7 @@ namespace BenchmarkConsoleApp
             BenchmarkRunner.Run<ContainsKeyBenchmark>();
             BenchmarkRunner.Run<RemoveBenchmark>();
             BenchmarkRunner.Run<TryGetValueBenchmark>();
+            BenchmarkRunner.Run<WhereBenchmark>();
 
             Console.WriteLine("Press any key to exit...");
             Console.ReadLine();
