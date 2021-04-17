@@ -42,7 +42,7 @@ namespace BenchmarkConsoleApp
         {
             for (int i = 0; i < N; i++)
             {
-                _dictionary.Where(x => x.Key == -1);
+                _ = _dictionary.Where(x => x.Key == -1);
             }
         }
 
@@ -51,7 +51,7 @@ namespace BenchmarkConsoleApp
         {
             for (int i = 0; i < N; i++)
             {
-                _multiKeyDictionary.Where(x => x.Key.Key1 == -1);
+                _ = _multiKeyDictionary.Where(x => x.Key.Key1 == -1);
             }
         }
 
@@ -60,7 +60,7 @@ namespace BenchmarkConsoleApp
         {
             for (int i = 0; i < N; i++)
             {
-                _dictionary.Where(x => x.Key == i);
+                _ = _dictionary.Where(x => x.Key == i);
             }
         }
 
@@ -69,7 +69,7 @@ namespace BenchmarkConsoleApp
         {
             for (int i = 0; i < N; i++)
             {
-                _multiKeyDictionary.Where(x => x.Key.Key1 == i);
+                _ = _multiKeyDictionary.Where(x => x.Key.Key1 == i);
             }
         }
     }

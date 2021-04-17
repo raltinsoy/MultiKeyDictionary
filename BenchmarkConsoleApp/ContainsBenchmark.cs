@@ -42,7 +42,7 @@ namespace BenchmarkConsoleApp
         {
             for (int i = 0; i < N; i++)
             {
-                _dictionary.Contains(new KeyValuePair<int, string>(i, "ASD" + i));
+                _ = _dictionary.Contains(new KeyValuePair<int, string>(i, "ASD" + i));
             }
         }
 
@@ -51,7 +51,7 @@ namespace BenchmarkConsoleApp
         {
             for (int i = 0; i < N; i++)
             {
-                _multiKeyDictionary.Contains(i, "ASD" + i, true);
+                _ = _multiKeyDictionary.Contains(i, "ASD" + i, true);
             }
         }
     }
