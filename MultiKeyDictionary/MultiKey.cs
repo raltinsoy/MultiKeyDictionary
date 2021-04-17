@@ -19,7 +19,7 @@ namespace MultiKeyDictionary
 
         public override string ToString()
         {
-            StringBuilder s = new StringBuilder();
+            var s = new StringBuilder();
             s.Append('[');
             if (Key1 != null)
             {
@@ -50,29 +50,18 @@ namespace MultiKeyDictionary
         {
             unchecked
             {
-                const int HashingBase = (int)2166136261;
-                const int HashingMultiplier = 16777619;
+                const int hashingBase = (int)2166136261;
+                const int hashingMultiplier = 16777619;
 
-                int hash = HashingBase;
-                hash = (hash * HashingMultiplier) ^ (!Object.ReferenceEquals(null, Key1) ? Key1.GetHashCode() : 0);
-                hash = (hash * HashingMultiplier) ^ (!Object.ReferenceEquals(null, Key2) ? Key2.GetHashCode() : 0);
+                int hash = hashingBase;
+                hash = (hash * hashingMultiplier) ^ Key1.GetHashCode();
+                hash = (hash * hashingMultiplier) ^ Key2.GetHashCode();
                 return hash;
             }
         }
 
         public static bool operator ==(MultiKey<TKey1, TKey2> obj1, MultiKey<TKey1, TKey2> obj2)
         {
-            if (Object.ReferenceEquals(obj1, obj2))
-            {
-                return true;
-            }
-
-            // Ensure that "obj1" isn't null
-            if (Object.ReferenceEquals(null, obj1))
-            {
-                return false;
-            }
-
             return obj1.Equals(obj2);
         }
 
