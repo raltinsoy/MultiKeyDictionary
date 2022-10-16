@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BenchmarkConsoleApp
 {
-    [SimpleJob(RuntimeMoniker.NetCoreApp50)]
+    [SimpleJob(RuntimeMoniker.Net50)]
     [SimpleJob(RuntimeMoniker.Net461)]
     [MemoryDiagnoser]
     public class WhereBenchmark
@@ -17,59 +17,136 @@ namespace BenchmarkConsoleApp
         [Params(1000, 1000000)]
         public int N;
 
-        private Dictionary<int, string> _dictionary;
-        private Dictionary<int, string, bool> _multiKeyDictionary;
+        private Dictionary<int, string> _dictionarySimple;
+        private Dictionary<Tuple<int, bool>, string> _dictionaryTuple;
+        private Dictionary<DoubleKey, string> _dictionaryStructDoubleKey;
+        private Dictionary<Dictionary<int, bool>, string> _dictionaryDoubleDictionary;
+        private Dictionary<int, bool, string> _dictionaryMultiKey;
 
         [GlobalSetup]
         public void Setup()
         {
-            _dictionary = new Dictionary<int, string>();
-            _multiKeyDictionary = new Dictionary<int, string, bool>();
+            _dictionarySimple = new Dictionary<int, string>();
+            _dictionaryTuple = new Dictionary<Tuple<int, bool>, string>();
+            _dictionaryStructDoubleKey = new Dictionary<DoubleKey, string>();
+            _dictionaryDoubleDictionary = new Dictionary<Dictionary<int, bool>, string>();
+            _dictionaryMultiKey = new Dictionary<int, bool, string>();
 
             for (int i = 0; i < N; i++)
             {
-                _dictionary.Add(i, "ASD" + i);
+                _dictionarySimple.Add(i, "ASD" + i);
             }
 
             for (int i = 0; i < N; i++)
             {
-                _multiKeyDictionary.Add(i, "ASD" + i, true);
+                _dictionaryTuple.Add(new Tuple<int, bool>(i, true), "ASD" + i);
             }
-        }
 
-        [Benchmark]
-        public void WhereNotFound()
-        {
             for (int i = 0; i < N; i++)
             {
-                _ = _dictionary.Where(x => x.Key == -1);
+                _dictionaryStructDoubleKey.Add(new DoubleKey() { Key1 = i, Key2 = true }, "ASD" + i);
             }
-        }
 
-        [Benchmark]
-        public void WhereNotFoundMultiKey()
-        {
             for (int i = 0; i < N; i++)
             {
-                _ = _multiKeyDictionary.Where(x => x.Key.Key1 == -1);
+                var key1 = new Dictionary<int, bool>();
+                key1.Add(i, true);
+                _dictionaryDoubleDictionary.Add(key1, "ASD" + i);
             }
-        }
 
-        [Benchmark]
-        public void WhereFound()
-        {
             for (int i = 0; i < N; i++)
             {
-                _ = _dictionary.Where(x => x.Key == i);
+                _dictionaryMultiKey.Add(i, true, "ASD" + i);
             }
         }
 
         [Benchmark]
-        public void WhereFoundMultiKey()
+        public void WhereNotFound_Simple()
         {
             for (int i = 0; i < N; i++)
             {
-                _ = _multiKeyDictionary.Where(x => x.Key.Key1 == i);
+                _ = _dictionarySimple.Where(x => x.Key == -1);
+            }
+        }
+
+        [Benchmark]
+        public void WhereNotFound_Tuple()
+        {
+            for (int i = 0; i < N; i++)
+            {
+                _ = _dictionaryTuple.Where(x => x.Key.Item1 == -1);
+            }
+        }
+
+        [Benchmark]
+        public void WhereNotFound_StructDoubleKey()
+        {
+            for (int i = 0; i < N; i++)
+            {
+                _ = _dictionaryStructDoubleKey.Where(x => x.Key.Key1 == -1);
+            }
+        }
+
+        [Benchmark]
+        public void WhereNotFound_DoubleDictionary()
+        {
+            for (int i = 0; i < N; i++)
+            {
+                _ = _dictionaryDoubleDictionary.SelectMany(x => x.Key.Where(y => y.Key == -1));
+            }
+        }
+
+        [Benchmark]
+        public void WhereNotFound_MultiKey()
+        {
+            for (int i = 0; i < N; i++)
+            {
+                _ = _dictionaryMultiKey.Where(x => x.Key.Key1 == -1);
+            }
+        }
+
+        [Benchmark]
+        public void WhereFound_Simple()
+        {
+            for (int i = 0; i < N; i++)
+            {
+                _ = _dictionarySimple.Where(x => x.Key == i);
+            }
+        }
+
+        [Benchmark]
+        public void WhereFound_Tuple()
+        {
+            for (int i = 0; i < N; i++)
+            {
+                _ = _dictionaryTuple.Where(x => x.Key.Item1 == i);
+            }
+        }
+
+        [Benchmark]
+        public void WhereFound_StructDoubleKey()
+        {
+            for (int i = 0; i < N; i++)
+            {
+                _ = _dictionaryStructDoubleKey.Where(x => x.Key.Key1 == i);
+            }
+        }
+
+        [Benchmark]
+        public void WhereFound_DoubleDictionary()
+        {
+            for (int i = 0; i < N; i++)
+            {
+                _ = _dictionaryDoubleDictionary.SelectMany(x => x.Key.Where(y => y.Key == i));
+            }
+        }
+
+        [Benchmark]
+        public void WhereFound_MultiKey()
+        {
+            for (int i = 0; i < N; i++)
+            {
+                _ = _dictionaryMultiKey.Where(x => x.Key.Key1 == i);
             }
         }
     }

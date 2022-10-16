@@ -17,4 +17,4 @@ Dictionary<int, string, bool> dictionary = new Dictionary<int, string, bool>();
 
 [TryGetValue Benchmark](./BenchmarkConsoleApp/bin/Release/net5.0/BenchmarkDotNet.Artifacts/results/BenchmarkConsoleApp.TryGetValueBenchmark-report-github.md)
 
-[Where Benchmark](./BenchmarkConsoleApp/bin/Release/net5.0/BenchmarkDotNet.Artifacts/results/BenchmarkConsoleApp.WhereBenchmark-report-github.md)
+[Where Benchmark](./BenchmarkConsoleApp/bin/Release/net461/BenchmarkDotNet.Artifacts/results/BenchmarkConsoleApp.WhereBenchmark-report-github.md)

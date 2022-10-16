@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BenchmarkConsoleApp
 {
-    [SimpleJob(RuntimeMoniker.NetCoreApp50)]
+    [SimpleJob(RuntimeMoniker.Net50)]
     [SimpleJob(RuntimeMoniker.Net461)]
     [MemoryDiagnoser]
     public class TryGetValueBenchmark
