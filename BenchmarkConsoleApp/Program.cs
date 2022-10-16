@@ -1,4 +1,5 @@
-﻿using BenchmarkDotNet.Running;
+﻿using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Running;
 using System;
 
 namespace BenchmarkConsoleApp
@@ -9,12 +10,18 @@ namespace BenchmarkConsoleApp
         {
             //BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly).Run(args, new DebugInProcessConfig());
 
+#if DEBUG
+            var config = DefaultConfig.Instance.WithOptions(ConfigOptions.DisableOptimizationsValidator);
+            BenchmarkRunner.Run<AddBenchmark>(config);
+#else
             BenchmarkRunner.Run<AddBenchmark>();
-            BenchmarkRunner.Run<ContainsBenchmark>();
-            BenchmarkRunner.Run<ContainsKeyBenchmark>();
-            BenchmarkRunner.Run<RemoveBenchmark>();
-            BenchmarkRunner.Run<TryGetValueBenchmark>();
-            BenchmarkRunner.Run<WhereBenchmark>();
+#endif
+
+            //BenchmarkRunner.Run<ContainsBenchmark>();
+            //BenchmarkRunner.Run<ContainsKeyBenchmark>();
+            //BenchmarkRunner.Run<RemoveBenchmark>();
+            //BenchmarkRunner.Run<TryGetValueBenchmark>();
+            //BenchmarkRunner.Run<WhereBenchmark>();
 
             Console.WriteLine("Press any key to exit...");
             Console.ReadLine();

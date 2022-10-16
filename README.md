@@ -7,7 +7,7 @@ Dictionary<int, string, bool> dictionary = new Dictionary<int, string, bool>();
 
 ## Benchmarks
 
-[Add Benchmark](./BenchmarkConsoleApp/bin/Release/net5.0/BenchmarkDotNet.Artifacts/results/BenchmarkConsoleApp.AddBenchmark-report-github.md)
+[Add Benchmark](./BenchmarkConsoleApp/bin/Release/net461/BenchmarkDotNet.Artifacts/results/BenchmarkConsoleApp.AddBenchmark-report-github.md)
 
 [Contains Benchmark](./BenchmarkConsoleApp/bin/Release/net5.0/BenchmarkDotNet.Artifacts/results/BenchmarkConsoleApp.ContainsBenchmark-report-github.md)
 
